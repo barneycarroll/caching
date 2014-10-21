@@ -19,7 +19,7 @@ function caching( fn, isConstructor ){
 		// to correctly identify duplicate composite constructors. 
 		// Isolate these cases by assigning them a void context.
 		var context    = this instanceof facade ? void 0 : this;
-		var signature  = [].concat.call( [ context ], arguments );
+		var signature  = [].concat.apply( [ context ], arguments );
 		var output     = _.findWhere( cache, function signaturesMatch( entry ){
 			return ( isCached = _.every( signature, function argumentMatch( argument, index ){
 				return signature[ index ] === entry.signature[ index ];
